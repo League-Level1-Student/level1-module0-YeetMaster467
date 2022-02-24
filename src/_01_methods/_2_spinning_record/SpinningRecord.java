@@ -44,8 +44,9 @@ public class SpinningRecord extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 600;
     
-    Song song = new Song("src/awesomeTrack.mp3");
+    Song song = new Song("src/Rick_Astley_-_Never_Gonna_Give_You_Up_Qoret.com.mp3");
     PImage pictureOfRecord;
+    int spin = 0;
     
     @Override
     public void settings() {
@@ -54,12 +55,21 @@ public class SpinningRecord extends PApplet {
 
     @Override
     public void setup() {
-        
+        pictureOfRecord = loadImage("images/record.png");
+        pictureOfRecord.resize(600, 600);
+        image(pictureOfRecord, 0, 0);
     }
 
     @Override
     public void draw() {
-        
+        if(mousePressed) {
+        	spin += 2;
+            rotateImage(pictureOfRecord, spin);
+            image(pictureOfRecord, 0, 0);
+            song.play();
+        }else {
+        	song.stop();
+        }
     }
 
     static public void main(String[] args) {

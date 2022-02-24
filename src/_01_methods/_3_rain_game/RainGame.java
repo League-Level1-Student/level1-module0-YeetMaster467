@@ -1,5 +1,7 @@
 package _01_methods._3_rain_game;
 
+import java.awt.Color;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -49,8 +51,8 @@ public class RainGame extends PApplet {
     int bucketWidth = 50;
     int bucketHeight;
     PImage bucket;
-    int y;
-    int x;
+    int y = 100;
+    int x = (int)random(WIDTH);
 
     // Sets the size of your canvas
     @Override
@@ -60,12 +62,18 @@ public class RainGame extends PApplet {
 
     @Override
     public void setup() {
-
+    	bucket = loadImage("images/bucket.png");
+    	bucket.resize(100, 100);
     }
 
     @Override
     public void draw() {
-
+    	background(19, 146, 214);
+    	noStroke();
+    	fill(14,216,227);
+    	ellipse(x,y, 35,50);
+    	y += 2;
+    	
     }
 
     static public void main(String[] args) {

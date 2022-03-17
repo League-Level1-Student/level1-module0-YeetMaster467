@@ -5,8 +5,8 @@ import processing.core.PImage;
 
 
 public class FlappyBird extends PApplet {
-    static final int WIDTH = 800;
-    static final int HEIGHT = 600;
+    static final int WIDTH = 600;
+    static final int HEIGHT = 800;
     PImage background;
     PImage bird;
     PImage topPipe;
@@ -44,6 +44,9 @@ public class FlappyBird extends PApplet {
         teleportPipes();
         y += birdYVelocity;
         birdYVelocity += birdGravity;
+        if(intersectsPipes()) {
+        	birdYVelocity = 75;
+        }
     }
     
     public void mousePressed() {
@@ -59,6 +62,16 @@ public class FlappyBird extends PApplet {
          	upperPipeHeight = (int) random(100,400);
          	lowerPipeY = upperPipeHeight + pipeGap;
          }
+    }
+    
+    boolean intersectsPipes() {
+    	if(y < upperPipeHeight && x > pipeX && x < (pipeX+50)) {
+    		return true;
+    	}else if(y > lowerPipeY && x > pipeX && x < (pipeX+50)) {
+    		return true;
+    	}else {
+    		return false;
+    	}
     }
 
     static public void main(String[] args) {
